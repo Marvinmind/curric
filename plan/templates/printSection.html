@@ -1,0 +1,15 @@
+{{sections.node.name}}
+{% if sections.children %}
+<ul>
+{% for item in sections.children %}
+
+<li>
+{% with item as sections %}
+{% include 'printSection.html' %}
+{% endwith %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+

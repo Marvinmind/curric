@@ -1,0 +1,34 @@
+{{ root.name }}
+{% if root.exclusive_subsections.all %}
+<ul>
+{% for exclusive in root.exclusive_subsections.all %}
+<li>
+{% with exclusive as root %}
+{% include 'printGeneralSection.html' %}
+{%  endwith %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if root.mandatory_subsections.all %}
+<ul>
+{% for mandatory in root.mandatory_subsections.all %}
+<li>
+{% with mandatory as root %}
+{% include 'printGeneralSection.html' %}
+{%  endwith %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if root.modules.all %}
+    <ul>
+{% for module in root.modules.all %}
+    <li>
+{{ module.name }}
+    </li>
+{%  endfor %}
+    </ul>
+{% endif %}
