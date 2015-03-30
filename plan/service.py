@@ -16,7 +16,7 @@ def selectModuleInSection(module, section, studyplan):
 	#look if incompatible section has been selected
 	currentSection = section
 	incompSections = []
-	
+
 
 	while(currentSection.parent):
 		while(not currentSection.parent.exclusive_subsections.exists()):
