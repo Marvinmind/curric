@@ -17,7 +17,6 @@ def selectModuleInSection(module, section, studyplan):
 	currentSection = section
 	incompSections = []
 	
-	
 
 	while(currentSection.parent):
 		while(not currentSection.parent.exclusive_subsections.exists()):
