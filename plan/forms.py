@@ -14,10 +14,15 @@ class ModuleForm(forms.ModelForm):
 """
 class TestForm(forms.Form):
 
-    Choices2 = Module.objects.all()
-    Choices2 = ((x.id, x.name) for x in Choices2)
-    CHOICES = (('hi', 'Wert1',), ('ho','Wert2',))
-    section = forms.CharField(widget=forms.HiddenInput())
-    stuff = forms.MultipleChoiceField(Choices2, widget=forms.CheckboxSelectMultiple(), required=False)
+    def __init__(self, *args, **kwargs):
+        #args for super may not enclude modules kwarg. Therefore a copy is made and modules removed
+        super_kwargs = dict(kwargs)
+        del super_kwargs['modules']
+
+        super(TestForm, self).__init__(*args, **super_kwargs)
+        self.fields['stuff'] = forms.MultipleChoiceField(kwargs['modules'], widget=forms.CheckboxSelectMultiple(), required=False)
+        self.fields['section'] = forms.CharField(widget=forms.HiddenInput())
+
+
 
 

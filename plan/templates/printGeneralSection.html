@@ -1,3 +1,5 @@
+{% load extra_tags %}
+
 {{ root.name }}
 {% if root.exclusive_subsections.all %}
 <ul>
@@ -24,11 +26,9 @@
 {% endif %}
 
 {% if root.modules.all %}
-    <ul>
-{% for module in root.modules.all %}
-    <li>
-{{ module.name }}
-    </li>
-{%  endfor %}
-    </ul>
+    <br>
+    <form action="/plan/editplan/" method="POST">
+{{ forms | lookup:root.name }}
+        <input type="submit" value="Submit" />
+    <form
 {% endif %}

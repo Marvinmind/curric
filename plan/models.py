@@ -10,6 +10,9 @@ class Module(models.Model):
 	name = models.CharField(max_length=200, blank=True, null=True)
 	number = models.IntegerField(blank=True, null=True)
 	credit_points = models.IntegerField(blank=True, null=True)
+
+	def __str__(self):
+		return self.name
 	
 	def __eq__(self, other): 
 		return self.name == other.name and self.credit_points == other.credit_points
