@@ -20,7 +20,7 @@ class TestForm(forms.Form):
         del super_kwargs['modules']
 
         super(TestForm, self).__init__(*args, **super_kwargs)
-        self.fields['stuff'] = forms.MultipleChoiceField(kwargs['modules'], widget=forms.CheckboxSelectMultiple(), required=False)
+        self.fields['stuff'] = forms.MultipleChoiceField(kwargs['modules'], widget=forms.CheckboxSelectMultiple(attrs={'checked': False}), required=False)
         self.fields['section'] = forms.CharField(widget=forms.HiddenInput())
 
 

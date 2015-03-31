@@ -24,7 +24,10 @@ class Section(models.Model):
 	exclusive_subsections = models.ManyToManyField('self', blank=True, null=True, symmetrical=False, related_name='more_stuff')
 	parent = models.ForeignKey('self', blank=True, null=True)
 	level = models.IntegerField(blank=True, null=True)
-	modules = models.ManyToManyField(Module, blank=True, null=True)
+	modules = models.ManyToManyField(Module, blank=True, null=True, symmetrical=False)
+
+	def __str__(self):
+		return self.name
 	
 	def __eq__(self, other): 
 		return self.name == other.name

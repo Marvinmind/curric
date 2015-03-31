@@ -17,9 +17,10 @@ def selectModuleInSection(module, section, studyplan):
 	currentSection = section
 	incompSections = []
 
-
+	#check if section has incompatible sections that are already chosen
+	#first create list of all incompatable ones
 	while(currentSection.parent):
-		while(not currentSection.parent.exclusive_subsections.exists()):
+		while(not currentSection.parent.exclusive_subsections.exists() or not currentSection.parent):
 			currentSection = currentSection.parent
 		for sister in currentSection.parent.exclusive_subsections.all():
 			if(sister != currentSection):
@@ -30,9 +31,9 @@ def selectModuleInSection(module, section, studyplan):
 		print('an incompatibel one: '+incompSection.name)
 		if incompSection in sectionsInStudyplan:
 			print('this Section is incompatible with another selected section')
-			#throw exception
-		else:
-			ModuleSelections.objects.create(module=module, section=section, studyplan=studyplan)
+			return
+	else:
+		ModuleSelections.objects.create(module=module, section=section, studyplan=studyplan)
 		
 def getAllChildrenPlusNode(node):
 	print('called with node '+node.name)
